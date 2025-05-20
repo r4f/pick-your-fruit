@@ -34,7 +34,7 @@
 <script>
 	const map = L.map('map').setView([49.7796256, 9.9947906], 13);
 
-    var geojsonLayer = new L.GeoJSON.AJAX("fruit_trees.geojson");
+    var geojsonLayer = new L.GeoJSON.AJAX("pick-your-fruit/fruit_trees.geojson");
 
 	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 19,

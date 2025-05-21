@@ -1,9 +1,73 @@
 {
   "type": "FeatureCollection",
   "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "type": "node",
+                "id": -1,
+                "tags": {
+                    "natural": "tree",
+                    "leaf_type": "broadleaved",
+                    "leaf_cycle": "deciduous",
+                    "species": "Malus domestica",
+                    "taxon:cultivar": "Belle de Boskoop",
+                    "genus": "Malus"
+                }
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.9967653,
+                    49.779539
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "type": "node",
+                "id": -2,
+                "tags": {
+                    "natural": "tree",
+                    "leaf_type": "broadleaved",
+                    "leaf_cycle": "deciduous",
+                    "species": "Malus domestica",
+                    "taxon:cultivar": "Belle de Boskoop",
+                    "genus": "Malus"
+                }
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.996638,
+                    49.7796237
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "type": "node",
+                "id": -3,
+                "tags": {
+                    "natural": "tree",
+                    "leaf_type": "broadleaved",
+                    "leaf_cycle": "deciduous",
+                    "genus": "Castanea"
+                }
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.9964099,
+                    49.7797506
+                ]
+            }
+        },
     {
       "type": "Feature",
-      "id": "-1",
+      "id": "-4",
       "properties": {
         "genus": "Prunus",
         "species": "Prunus avium",

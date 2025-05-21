@@ -7,7 +7,7 @@
 	
 	<title>A map of fruit trees.</title>
 	
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -31,7 +31,6 @@
 
 <div id='map'></div>
 
-<script src="leaflet.ajax.min.js"></script>
 <script>
 	const map = L.map('map').setView([49.7796256, 9.9947906], 13);
 
@@ -63,19 +62,23 @@
         }
     }
 
-    function styleFeature(feature) {
-      return {
-        fillColor: feature.properties.id ? 'green' : 'red', // Green if 'id' exists, red otherwise
-        weight: 2,
-        fillOpacity: 0.6
-      };
-    }
-    const customIcon = L.icon({
-      iconUrl: 'icons/balloon-fill.svg', // Replace with the path to your custom icon
-      iconSize: [25, 41],         // Size of the icon
-      iconAnchor: [12, 41],       // Anchor point of the icon
-      popupAnchor: [1, -34]       // Anchor point for the popup
-    });
+    const icon_urls = {
+	    'cherry': 'icons/balloon-fill.svg',
+	    'apple': 'icons/balloon.svg',
+	    'plum': 'icons/balloon-heart-fill.svg',
+    };
+
+    const icons = {};
+      
+    // Iterate over icon_urls and create L.icon instances
+    for (const [key, url] of Object.entries(icon_urls)) {
+      icons[key] = L.icon({
+        iconUrl: url,
+        iconSize: [25, 41],         // Size of the icon
+        iconAnchor: [12, 41],       // Anchor point of the icon
+        popupAnchor: [1, -34]       // Anchor point for the popup
+      });
+    }    
 
     // Load the GeoJSON file
     fetch('fruit_trees.geojson')
@@ -83,9 +86,8 @@
       .then(data => {
         L.geoJSON(data, {
           pointToLayer: function(feature, latlng) {
-            return "@id" in feature.properties ? L.marker(latlng) : L.marker(latlng, {icon: customIcon});
+            return "@id" in feature.properties ? L.marker(latlng, {icon: icons["cherry"]}) : L.marker(latlng, {icon: icons["plum"]});
           },
-          style: styleFeature, // Apply the style function
           onEachFeature: function (feature, layer) {
             // Add a popup for each feature
             layer.bindPopup(`<strong>Genus:</strong> ${feature.properties.genus || 'Unknown'}<br>

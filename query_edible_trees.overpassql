@@ -8,8 +8,6 @@ node(around:15000,49.7796256, 9.9947906)[natural=tree]->.all;
 (
   node.all[genus=Malus];
   node.all[species~"^Malus"];
-  node.all[genus=Tilia];
-  node.all[species~"^Tilia"];
   node.all[genus=Prunus];
   node.all[species~"^Prun"];
   node.all[genus=Pyrus];

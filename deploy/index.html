@@ -63,9 +63,9 @@
     }
 
     const icon_urls = {
-	    'cherry': 'icons/balloon-fill.svg',
+	    'cherry': 'icons/tree_icon.svg',
 	    'apple': 'icons/balloon.svg',
-	    'plum': 'icons/balloon-heart-fill.svg',
+	    'plum': 'icons/tree_icon_desaturated.svg',
     };
 
     const icons = {};
@@ -86,7 +86,7 @@
       .then(data => {
         L.geoJSON(data, {
           pointToLayer: function(feature, latlng) {
-            return "@id" in feature.properties ? L.marker(latlng, {icon: icons["cherry"]}) : L.marker(latlng, {icon: icons["plum"]});
+            return "@id" in feature.properties ? L.marker(latlng, {icon: icons["plum"]}) : L.marker(latlng, {icon: icons["cherry"]});
           },
           onEachFeature: function (feature, layer) {
             // Add a popup for each feature

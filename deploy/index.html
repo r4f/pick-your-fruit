@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<title>Mobile tutorial - Leaflet</title>
+	<title>A map of fruit trees.</title>
 	
 	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 
@@ -94,18 +94,6 @@
         }).addTo(map);
       })
       .catch(error => console.error('Error loading GeoJSON:', error));
-
-    //var geojsonLayer = new L.GeoJSON.AJAX(
-    //    "fruit_trees.geojson",
-    //    {
-    //        onEachFeature: popUp,
-    //        style: function(f) {
-    //            return {color: "#f0f"};
-    //        }
-    //    }
-    //).resetStyle().setStyle();
-
-    //geojsonLayer.addTo(map);
 </script>
 
 

@@ -1,9 +1,15 @@
 import requests
 import json
 from osmtogeojson import osmtogeojson
+import sys
 
 overpass_url="https://overpass-api.de/api/interpreter"
-overpass_query_file="query_edible_trees.overpassql"
+
+if len(sys.argv) > 1:
+    overpass_query_file=sys.argv[1]
+else:
+    overpass_query_file="query_edible_trees.overpassql"
+
 geojson_result_file="deploy/fruit_trees.geojson"
 additional_geojson_features_file="additional_fruit_trees.geojson"
 

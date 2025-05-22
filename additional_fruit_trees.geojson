@@ -1,79 +1,108 @@
 {
-  "type": "FeatureCollection",
-  "features": [
+    "type": "FeatureCollection",
+    "features": [
         {
             "type": "Feature",
-            "id": -1,
+            "id": "-1",
             "properties": {
-                    "natural": "tree",
-                    "leaf_type": "broadleaved",
-                    "leaf_cycle": "deciduous",
-                    "species": "Malus domestica",
-                    "taxon:cultivar": "Belle de Boskoop",
-                    "genus": "Malus"
+                "natural": "tree",
+                "leaf_type": "broadleaved",
+                "leaf_cycle": "deciduous",
+                "genus": "Malus",
+		"genus:de": "Apfel",
+		"genus:en": "Apple",
+                "species": "Malus domestica",
+                "taxon:cultivar": "Belle de Boskoop"
             },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    9.9967653,
-                    49.779539
+                    9.9978419,
+                    49.7780667
                 ]
             }
         },
         {
             "type": "Feature",
-            "id": -2,
+            "id": "-2",
             "properties": {
-                    "natural": "tree",
-                    "leaf_type": "broadleaved",
-                    "leaf_cycle": "deciduous",
-                    "species": "Malus domestica",
-                    "taxon:cultivar": "Belle de Boskoop",
-                    "genus": "Malus"
+                "natural": "tree",
+                "leaf_type": "broadleaved",
+                "leaf_cycle": "deciduous",
+                "genus": "Malus",
+		"genus:de": "Apfel",
+		"genus:en": "Apple",
+                "species": "Malus domestica",
+                "taxon:cultivar": "Alkmene"
             },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    9.996638,
-                    49.7796237
+                    9.9980365,
+                    49.7780667
                 ]
             }
         },
         {
             "type": "Feature",
-            "id": -3,
+            "id": "-3",
             "properties": {
-                    "natural": "tree",
-                    "leaf_type": "broadleaved",
-                    "leaf_cycle": "deciduous",
-                    "genus": "Castanea"
+                "natural": "tree",
+                "leaf_type": "broadleaved",
+                "leaf_cycle": "deciduous",
+                "genus": "Malus",
+		"genus:de": "Apfel",
+		"genus:en": "Apple",
+                "species": "Malus domestica",
+                "taxon:cultivar": "Alkmene"
             },
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    9.9964099,
-                    49.7797506
+                    9.9977095,
+                    49.778097
                 ]
             }
         },
-    {
-      "type": "Feature",
-      "id": "-4",
-      "properties": {
-        "genus": "Prunus",
-        "species": "Prunus avium",
-        "species:de": "Vogelkirsche",
-        "species:en": "Sweet cherry",
-        "leaf_type": "broadleaved",
-        "natural": "tree"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-            9.9796348,
-            49.7685393
-        ]
-      }
-    }
-  ]
+        {
+            "type": "Feature",
+            "id": "-4",
+            "properties": {
+                "natural": "tree",
+                "leaf_type": "broadleaved",
+                "leaf_cycle": "deciduous",
+                "genus": "Malus",
+		"genus:de": "Apfel",
+		"genus:en": "Apple",
+                "species": "Malus domestica",
+                "taxon:cultivar": "Gewürzluiken"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.9979046,
+                    49.7781204
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "-5",
+            "properties": {
+                "genus": "Prunus",
+                "species": "Prunus avium",
+                "species:de": "Vogelkirsche",
+                "species:en": "Sweet cherry",
+                "leaf_type": "broadleaved",
+                "natural": "tree"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.9796348,
+                    49.7685393
+                ]
+            }
+        }
+    ]
 }

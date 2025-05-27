@@ -25,11 +25,30 @@
 		}
 	</style>
 
-	<style>body { padding: 0; margin: 0; } #map { height: 100%; width: 100vw; }</style>
+	<style>
+          body { padding: 0; margin: 0; }
+	  #map { height: 100%; width: 70vw; }
+	  #infopanel {position: absolute; top: 0; right: 0; height: 100%; width: 30vw; background-color: rgb(100,200,200);}
+	</style>
 </head>
 <body>
 
 <div id='map'></div>
+<div id='infopanel'>
+	<h1>Hi</h1>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous">
+</script>
+
+<script>
+  function show_details() {
+    $("#infopanel").html("New content here!");
+  }
+</script>
 
 <script>
 	const map = L.map('map').setView([49.7796256, 9.9947906], 13);
@@ -90,14 +109,21 @@
           },
           onEachFeature: function (feature, layer) {
             // Add a popup for each feature
-            layer.bindPopup(`<strong>Genus:</strong> ${feature.properties.genus || 'Unknown'}<br>
+            const details = `<strong>Genus:</strong> ${feature.properties.genus || 'Unknown'}<br>
                              <strong>Species:</strong> ${feature.properties.species || 'Unknown'}<br>
                              <strong>Cultivar:</strong> ${feature.properties["taxon:cultivar"] || 'Unknown'}`
-            );
+            //layer.bindPopup(details);
+            layer.on("click", function() {
+              $("#infopanel").html(details);
+            })
           }
         }).addTo(map);
       })
       .catch(error => console.error('Error loading GeoJSON:', error));
+
+//	map.on('click', function(e) {
+//    alert(e.latlng);
+//} );
 </script>
 
 

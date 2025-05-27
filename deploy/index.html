@@ -29,13 +29,23 @@
           body { padding: 0; margin: 0; }
 	  #map { height: 100%; width: 70vw; }
 	  #infopanel {position: absolute; top: 0; right: 0; height: 100%; width: 30vw; background-color: rgb(100,200,200);}
+    #infopanel-details {height: 40%;}
+    #infopanel-list {height: 55%;}
 	</style>
 </head>
 <body>
 
 <div id='map'></div>
 <div id='infopanel'>
-	<h1>Hi</h1>
+  <div id='infopanel-details'>
+  </div>
+  <div id='infopanel-list'>
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </div>
 </div>
 
 <script
@@ -46,7 +56,7 @@
 
 <script>
   function show_details() {
-    $("#infopanel").html("New content here!");
+    $("#infopanel-details").html("New content here!");
   }
 </script>
 
@@ -82,9 +92,14 @@
     }
 
     const icon_urls = {
-	    'cherry': 'icons/tree_icon.svg',
-	    'apple': 'icons/balloon.svg',
-	    'plum': 'icons/tree_icon_desaturated.svg',
+	    'cherry': 'icons/cherry-svgrepo-com.svg',
+	    'plum': 'icons/plum-svgrepo-com.svg',
+      'walnut': 'icons/walnut-svgrepo-com.svg',
+	    'apple': 'icons/apple-svgrepo-com.svg',
+      'tree': 'icons/tree-svgrepo-com.svg',
+      'tree2': 'icons/apple-tree-tree-svgrepo-com.svg',
+	    'tree3': 'icons/tree_icon.svg',
+	    'tree3_desaturated': 'icons/tree_icon_desaturated.svg',
     };
 
     const icons = {};
@@ -103,21 +118,70 @@
     fetch('fruit_trees.geojson')
       .then(response => response.json())
       .then(data => {
-        L.geoJSON(data, {
+        const geoJsonLayer = L.geoJSON(data, {
           pointToLayer: function(feature, latlng) {
-            return "@id" in feature.properties ? L.marker(latlng, {icon: icons["plum"]}) : L.marker(latlng, {icon: icons["cherry"]});
+            let genus = feature.properties.genus;
+            let species = feature.properties.species;
+            let my_icon = icons["tree"];
+
+            if (genus) {
+              genus = genus.toLowerCase();
+              if (species) {
+                species = species.toLowerCase();
+              } else {
+                species = "";
+              }
+              if (genus === "malus") {
+                my_icon = icons["apple"];
+              } else if (genus === "prunus") {
+                if (species === "prunus cerasus") {
+                  my_icon = icons["cherry"];
+                } else {
+                  my_icon = icons["plum"];
+                }
+              } else if (genus === "juglans") {
+                my_icon = icons["walnut"];
+              }
+            }
+
+            return L.marker(latlng, {icon: my_icon})
+            //return "@id" in feature.properties ? L.marker(latlng, {icon: icons["plum"]}) : L.marker(latlng, {icon: icons["cherry"]});
           },
           onEachFeature: function (feature, layer) {
             // Add a popup for each feature
             const details = `<strong>Genus:</strong> ${feature.properties.genus || 'Unknown'}<br>
                              <strong>Species:</strong> ${feature.properties.species || 'Unknown'}<br>
                              <strong>Cultivar:</strong> ${feature.properties["taxon:cultivar"] || 'Unknown'}`
-            //layer.bindPopup(details);
+            layer.bindPopup(details);
             layer.on("click", function() {
-              $("#infopanel").html(details);
+              $("#infopanel-details").html(details);
             })
           }
         }).addTo(map);
+
+            // Function to update the #infopanel-list
+        function updateFeatureList() {
+          const features = geoJsonLayer.getLayers();
+          const listItems = features.map((layer, index) => {
+            const props = layer.feature.properties;
+            return `<li data-index="${index}">${props.genus || 'Unknown'} - ${props.species || 'Unknown'}</li>`;
+          }).join('');
+          $("#infopanel-list ul").html(listItems);
+
+          $("#infopanel-list ul li").on("click", function () {
+            const index = $(this).data("index");
+            const layer = features[index];
+
+            // Zoom to the feature's location
+            map.setView(layer.getLatLng(), 16);
+
+            // Highlight the marker (e.g., by opening a popup or changing its icon temporarily)
+            layer.openPopup();
+          });
+        }
+
+        updateFeatureList();
+        map.on("moveend", updateFeatureList);
       })
       .catch(error => console.error('Error loading GeoJSON:', error));
 

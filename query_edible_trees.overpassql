@@ -4,7 +4,7 @@ Note, that not all matches are edible fruit trees. E.g., Castanea (Chestnut), as
 The property query and the bounding region are still subject to change and fine-tuning.
 */
 [out:json];
-node(around:15000,49.7796256, 9.9947906)[natural=tree]->.all;
+node(around:3000,49.7744566, 10.0008262)[natural=tree]->.all;
 (
   node.all[genus=Malus];
   node.all[species~"^Malus"];

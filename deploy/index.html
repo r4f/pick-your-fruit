@@ -96,10 +96,13 @@
           },
           onEachFeature: function (feature, layer) {
             // Add a popup for each feature
-            layer.bindPopup(`<strong>Genus:</strong> ${feature.properties.genus || 'Unknown'}<br>
+            let popupContent = `<strong>Genus:</strong> ${feature.properties.genus || 'Unknown'}<br>
                              <strong>Species:</strong> ${feature.properties.species || 'Unknown'}<br>
-                             <strong>Cultivar:</strong> ${feature.properties["taxon:cultivar"] || 'Unknown'}`
-            );
+                             <strong>Cultivar:</strong> ${feature.properties["taxon:cultivar"] || 'Unknown'}<br>`
+            if (feature.properties.wikipedia_url) {
+              popupContent += `<a href="${feature.properties.wikipedia_url}" target="_blank">Wikipedia</a><br>`
+            }
+            layer.bindPopup(popupContent);
           }
         }).addTo(map);
       })

@@ -3,4 +3,5 @@ charset-normalizer==3.4.2
 idna==3.10
 osmtogeojson==0.0.2
 requests==2.32.3
+sparqlwrapper==2.0.0
 urllib3==2.4.0

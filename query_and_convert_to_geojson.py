@@ -73,6 +73,7 @@ try:
     linking = get_wikipedia_articles(wikidata_ids)
     print(linking)
 except Exception:
+    linking = None
     pass
 
 for feature in response_dict["elements"]:
@@ -87,7 +88,7 @@ for feature in response_dict["elements"]:
             )
         )
     )
-    if wikidata_id is not None:
+    if wikidata_id is not None and linking is not None:
         wikipedia_url = linking.get(wikidata_id)
         if wikipedia_url is not None:
             tags["wikipedia_url"] = wikipedia_url
